@@ -128,16 +128,16 @@ const titleForRun = (run) => {
   if (runDistance >= 40) {
     return RUN_TITLES.FULL_MARATHON_RUN_TITLE;
   }
-  if (runHour >= 0 && runHour <= 10) {
+  if (runHour >= 4 && runHour <= 10) {
     return RUN_TITLES.MORNING_RUN_TITLE;
   }
   if (runHour > 10 && runHour <= 14) {
     return RUN_TITLES.MIDDAY_RUN_TITLE;
   }
-  if (runHour > 14 && runHour <= 18) {
+  if (runHour > 14 && runHour <= 17) {
     return RUN_TITLES.AFTERNOON_RUN_TITLE;
   }
-  if (runHour > 18 && runHour <= 21) {
+  if (runHour > 17 && runHour <= 21) {
     return RUN_TITLES.EVENING_RUN_TITLE;
   }
   return RUN_TITLES.NIGHT_RUN_TITLE;
@@ -170,7 +170,7 @@ const getBoundsForGeoData = (geoData) => {
   }).fitBounds(cornersLongLat, { padding: 200 });
   let { longitude, latitude, zoom } = viewport;
   if (features.length > 1) {
-    zoom = 11.5;
+    zoom = 12;
   }
   return { longitude, latitude, zoom };
 };

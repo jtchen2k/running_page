@@ -16,7 +16,7 @@ const RunRow = ({ runs, run, locateActivity, runIndex, setRunIndex }) => {
   // change click color
   const handleClick = (e, runs, run) => {
     const elementIndex = runs.indexOf(run);
-    e.target.parentElement.style.color = 'red';
+    e.target.parentElement.style.color = 'yellow';
 
     const elements = document.getElementsByClassName(styles.runRow);
     if (runIndex !== -1 && elementIndex !== runIndex) {
