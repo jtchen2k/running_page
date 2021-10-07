@@ -83,7 +83,9 @@ class Track:
             raise TrackLoadError("Track has no start time.")
         if self.end_time is None:
             raise TrackLoadError("Track has no end time.")
-        self.length = gpx.length_2d()
+            
+        # Changed to 3d distance to match Nike Run Club.
+        self.length = gpx.length_3d()
         if self.length == 0:
             raise TrackLoadError("Track is empty.")
         # Disabled simplify for higher accuracy.
