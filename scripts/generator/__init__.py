@@ -1,12 +1,11 @@
 import datetime
 import sys
+from collections import namedtuple
 
 import arrow
 import stravalib
 from gpxtrackposter import track_loader
 from sqlalchemy import func
-from collections import namedtuple
-
 
 from .db import Activity, init_db, update_or_create_activity
 
@@ -93,9 +92,11 @@ class Generator:
         for t in gpx_tracks:
             t = t.to_namedtuple()
             combined_tracks = app_tracks[str(t.id)]
-            combined_tracks['map'] = t.map
+            combined_tracks["map"] = t.map
             # combined_tracks['location_country'] = t.location_country
-            combined_tracks = namedtuple("x", combined_tracks.keys())(*combined_tracks.values())
+            combined_tracks = namedtuple("x", combined_tracks.keys())(
+                *combined_tracks.values()
+            )
             created = update_or_create_activity(self.session, combined_tracks)
             if created:
                 sys.stdout.write("+")

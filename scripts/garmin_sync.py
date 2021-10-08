@@ -7,10 +7,10 @@ Copy most code from https://github.com/cyberjunky/python-garminconnect
 
 import argparse
 import asyncio
+import json
 import logging
 import os
 import re
-import json
 import sys
 import time
 import traceback

@@ -41,9 +41,10 @@ R.I.P. 希望大家都能健康顺利的跑过终点，逝者安息。
 | [L1cardo](https://github.com/L1cardo)           | https://run.licardo.cn                     | Nike      |
 | [luckylele666](https://github.com/luckylele666) | https://0000928.xyz                        | Strava    |
 | [MFYDev](https://github.com/MFYDev)             | https://mfydev.run                         | Garmin-cn |
-| [Jim Gao](https://github.com/tianheg)             | https://run.yidajiabei.xyz/ | Keep |
-| [Oysmart](https://github.com/oysmart)             | https://run.ouyang.wang                  | Garmin-cn |
+| [Jim Gao](https://github.com/tianheg)           | https://run.yidajiabei.xyz/                | Keep      |
+| [Oysmart](https://github.com/oysmart)           | https://run.ouyang.wang                    | Garmin-cn |
 | [Eished](https://github.com/eished)             | https://run.iknow.fun                      | Keep      |
+
 ## 它是怎么工作的
 
 ![image](https://user-images.githubusercontent.com/15976103/105784027-e1ad9900-5fb2-11eb-9479-372be21482f1.png)
@@ -539,7 +540,7 @@ Actions [源码](https://github.com/yihong0618/running_page/blob/master/.github/
 提交 PR 前:
 
 - 使用 black 对 Python 代码进行格式化。(black .)
-- 使用 isort 对 Python import 进行格式化。(isort --profile black  **/**/*.py)
+- 使用 isort 对 Python import 进行格式化。(isort --profile black **/**/\*.py)
 
 # 特别感谢
 

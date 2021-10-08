@@ -77,7 +77,7 @@ class Track:
         # use timestamp as id
         # self.run_id = int(datetime.datetime.timestamp(self.start_time) * 1000)
         # use pure filename as id
-        self.run_id = file_name.split('/')[-1].split('.')[0]
+        self.run_id = file_name.split("/")[-1].split(".")[0]
         self.start_time_local, self.end_time_local = parse_datetime_to_local(
             self.start_time, self.end_time, gpx
         )

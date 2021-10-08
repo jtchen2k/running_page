@@ -4,8 +4,8 @@
 import argparse
 import json
 import logging
-import os.path
 import os
+import os.path
 import time
 from collections import namedtuple
 from datetime import datetime, timedelta
@@ -26,7 +26,7 @@ from config import (
 )
 from generator import Generator
 
-from utils import adjust_time, make_activities_file_app_and_gpx, make_activities_file
+from utils import adjust_time, make_activities_file, make_activities_file_app_and_gpx
 
 # logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("nike_sync")
@@ -326,6 +326,7 @@ def save_gpx(gpx_data, activity_id):
     with open(file_path, "w") as f:
         f.write(gpx_data)
 
+
 def parse_no_gpx_data(activity):
     if not activity.get("metrics"):
         print(f"The activity {activity['id']} doesn't contain metrics information")
@@ -410,12 +411,11 @@ def make_new_gpxs(files):
         generator.sync_from_app(tracks_list)
     return gpx_files
 
+
 def make_app_tracks():
     app_tracks = {}
     files = [
-        OUTPUT_DIR + "/" + i
-        for i in os.listdir(OUTPUT_DIR)
-        if not i.startswith(".")
+        OUTPUT_DIR + "/" + i for i in os.listdir(OUTPUT_DIR) if not i.startswith(".")
     ]
     for file in files:
         with open(file, "r") as f:
@@ -432,7 +432,7 @@ def make_app_tracks():
             print(str(e))
             continue
     return app_tracks
-    
+
 
 if __name__ == "__main__":
     if not os.path.exists(OUTPUT_DIR):

@@ -41,7 +41,7 @@ const YearStat = ({ year, onClick }) => {
       streak = Math.max(streak, run.streak);
     }
   });
-  sumDistance = (sumDistance / 1000.0).toFixed(1);
+  sumDistance = (sumDistance / 1000.0).toFixed(2);
   const avgPace = formatPace(pace / (runs.length - paceNullCount));
   const hasHeartRate = !(heartRate === 0);
   const avgHeartRate = (heartRate / (runs.length - heartRateNullCount)).toFixed(

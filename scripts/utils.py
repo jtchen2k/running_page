@@ -4,9 +4,9 @@
 import json
 from datetime import datetime
 
-from stravalib.client import Client
 import pytz
 from generator import Generator
+from stravalib.client import Client
 
 
 def adjust_time(time, tz_name):
@@ -25,6 +25,7 @@ def make_activities_file(sql_file, gpx_dir, json_file):
     activities_list = generator.load()
     with open(json_file, "w") as f:
         json.dump(activities_list, f)
+
 
 def make_activities_file_app_and_gpx(sql_file, gpx_dir, json_file, tracks):
     generator = Generator(sql_file)

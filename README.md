@@ -43,8 +43,9 @@ English | [简体中文](https://github.com/yihong0618/running_page/blob/master/
 | [L1cardo](https://github.com/L1cardo)           | https://run.licardo.cn                     | Nike      |
 | [luckylele666](https://github.com/luckylele666) | https://0000928.xyz                        | Strava    |
 | [MFYDev](https://github.com/MFYDev)             | https://mfydev.run                         | Garmin-cn |
-| [Jim Gao](https://github.com/tianheg)             | https://run.yidajiabei.xyz/ | Keep |
+| [Jim Gao](https://github.com/tianheg)           | https://run.yidajiabei.xyz/                | Keep      |
 | [Eished](https://github.com/eished)             | https://run.iknow.fun                      | Keep      |
+
 ## How it works
 
 ![image](https://user-images.githubusercontent.com/15976103/103496454-4294f600-4e79-11eb-9bd6-8eea7a07ddff.png)
@@ -448,7 +449,7 @@ My secret is as follows
 Before submitting PR:
 
 - Format Python code with `black` (black .)
-- Format Python code with `isort` (isort --profile black  **/**/*.py)
+- Format Python code with `isort` (isort --profile black **/**/\*.py)
 
 # Special thanks
 

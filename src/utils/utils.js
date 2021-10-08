@@ -5,7 +5,7 @@ import { MUNICIPALITY_CITIES_ARR, RUN_TITLES } from './const';
 
 const titleForShow = (run) => {
   const date = run.start_date_local.slice(0, 11);
-  const distance = (run.distance / 1000.0).toFixed(1);
+  const distance = (run.distance / 1000.0).toFixed(2);
   let name = 'Run';
   if (run.name.slice(0, 7) === 'Running') {
     name = 'run';
@@ -26,7 +26,7 @@ const formatPace = (d) => {
   return `${minutes}:${seconds.toFixed(0).toString().padStart(2, '0')}`;
 };
 
-const formatRunTime = (distance,pace) => {
+const formatRunTime = (distance, pace) => {
   if (Number.isNaN(distance) || Number.isNaN(pace)) {
     return '0min';
   }
@@ -34,9 +34,9 @@ const formatRunTime = (distance,pace) => {
   const minutes = Math.floor(formatPace * distance);
   if (minutes === 0) {
     const seconds = Math.floor((formatPace * distance - minutes) * 60.0);
-    return seconds + 's';
+    return `${seconds}s`;
   }
-  return minutes + 'min';
+  return `${minutes}min`;
 };
 
 // for scroll to the map
