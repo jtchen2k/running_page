@@ -7,8 +7,8 @@ module.exports = {
     description: "Don't stop running.",
     navLinks: [
       {
-        name: 'Blog',
-        url: 'https://billc.io',
+        name: 'About',
+        url: 'https://billc.io/about',
       },
       {
         name: 'GitHub',

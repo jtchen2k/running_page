@@ -19,6 +19,7 @@ import {
   sortDateFunc,
   titleForShow,
 } from 'src/utils/utils';
+import Footer from 'src/components/Footer';
 
 export default () => {
   const { siteTitle } = useSiteMetadata();
@@ -172,7 +173,7 @@ export default () => {
             <a href="/">{siteTitle}</a>
           </h1>
         </div>
-        {viewport.zoom <= 3 && IS_CHINESE ? (
+        {viewport.zoom <= 5 && IS_CHINESE ? (
           <LocationStat
             changeYear={changeYear}
             changeCity={changeCity}

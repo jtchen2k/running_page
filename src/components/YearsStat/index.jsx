@@ -19,6 +19,10 @@ const YearsStat = ({ year, onClick }) => {
           {INFO_MESSAGE(years.length, year)}
           <br />
         </p>
+        <br />
+        <div align="right">
+          <q style={{ fontStyle: 'italic' }}>Do not stop questioning.</q>
+        </div>
       </section>
       <hr color="yellow" />
       {yearsArrayUpdate.map((year) => (
