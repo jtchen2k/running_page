@@ -93,7 +93,8 @@ class Generator:
             t = t.to_namedtuple()
             combined_tracks = app_tracks[str(t.id)]
             combined_tracks["map"] = t.map
-            # combined_tracks['location_country'] = t.location_country
+            combined_tracks["start_latlng"] = t.start_latlng
+            del combined_tracks["location_country"]
             combined_tracks = namedtuple("x", combined_tracks.keys())(
                 *combined_tracks.values()
             )

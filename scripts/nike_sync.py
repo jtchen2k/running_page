@@ -35,9 +35,11 @@ logger = logging.getLogger("nike_sync")
 class Nike:
     def __init__(self, refresh_token):
         # For debugging
-        # self.client = httpx.Client(proxies= {
-        #     "https://": None,
-        #     })
+        # self.client = httpx.Client(
+        #     proxies={
+        #         "https://": None,
+        #     }
+        # )
 
         self.client = httpx.Client()
 
@@ -393,11 +395,9 @@ def make_new_gpxs(files):
         activity_name = str(json_data["end_epoch_ms"])
         parsed_gpx = parse_activity_gpx(json_data)
         if parsed_gpx:
-            print("YES")
             gpx_files.append(os.path.join(GPX_FOLDER, str(activity_name) + ".gpx"))
             save_gpx(parsed_gpx, activity_name)
         else:
-            print("NO")
             try:
                 track = parse_no_gpx_data(json_data)
                 track = namedtuple("x", track.keys())(*track.values())

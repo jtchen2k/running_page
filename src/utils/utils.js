@@ -34,9 +34,9 @@ const formatRunTime = (distance, pace) => {
   const minutes = Math.floor(formatPace * distance);
   if (minutes === 0) {
     const seconds = Math.floor((formatPace * distance - minutes) * 60.0);
-    return `${seconds}s`;
+    return `${seconds} s`;
   }
-  return `${minutes}min`;
+  return `${minutes} min`;
 };
 
 // for scroll to the map
