@@ -4,7 +4,7 @@
     "app_id": "com.nike.sport.running.droid",
     "start_epoch_ms": 1633273963660,
     "end_epoch_ms": 1633275674050,
-    "last_modified": 1633275732785,
+    "last_modified": 1633280345157,
     "active_duration_ms": 997000,
     "session": false,
     "delete_indicator": false,
@@ -84,12 +84,19 @@
         "com_nike_name": "First Speed Run",
         "com_nike_running_audioguidedrun": "FIRST_SPEED_RUN",
         "com_nike_running_goaltype": "speed",
+        "com_nike_running_ios_photos": "[\n  \"9A96F3FF-3FE6-42E8-8BAC-C5A9BE2D17C9\\/L0\\/001\"\n]",
         "com_nike_running_recordingappversion": "4.8.0",
-        "com_nike_temperature": "25.016666666666666",
-        "com_nike_weather": "clear_night",
-        "location": "outdoors"
+        "com_nike_temperature": "24.95",
+        "com_nike_weather": "clear-night",
+        "location": "outdoors",
+        "note": "Happy Birthday",
+        "terrain": "track"
     },
     "change_tokens": [
+        "10e30385c92b2ca03a63f02460c6dba9c8634d0538cf13cbddfb5f6344724875:1633280345157",
+        "3e391a47cfac1647a5151a62c27d1fa08d32a411978445971b009c07c62ff6a0:1633280318897",
+        "ea1db37f0a1717a0f8f63da74f79104f45feaa12c3c57e8be729378ac1fdd8fc:1633280318301",
+        "4e79b6e15391e4f358f6f13bf9a889e655241934d237866edfdf8c76181e5c7e:1633280233356",
         "a56e7f586af461a6584e453966ec80e8e761b7bd731f548b2069522c2bd7ef92:1633275732785",
         "93bc0a76587ec78f339a34f5625db91bb5824ae023c9bee6cd8a1b92bbfcb5ec:1633275676594"
     ],

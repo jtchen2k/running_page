@@ -26,6 +26,13 @@ def make_activities_file(sql_file, gpx_dir, json_file):
     with open(json_file, "w") as f:
         json.dump(activities_list, f)
 
+def make_activities_file_app_and_gpx(sql_file, gpx_dir, json_file, tracks):
+    generator = Generator(sql_file)
+    generator.sync_from_app_and_gpx(gpx_dir, tracks)
+    activities_list = generator.load()
+    with open(json_file, "w") as f:
+        json.dump(activities_list, f)
+
 
 def make_strava_client(client_id, client_secret, refresh_token):
     client = Client()

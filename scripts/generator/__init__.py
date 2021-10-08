@@ -5,6 +5,8 @@ import arrow
 import stravalib
 from gpxtrackposter import track_loader
 from sqlalchemy import func
+from collections import namedtuple
+
 
 from .db import Activity, init_db, update_or_create_activity
 
@@ -70,6 +72,31 @@ class Generator:
             return
         for t in tracks:
             created = update_or_create_activity(self.session, t.to_namedtuple())
+            if created:
+                sys.stdout.write("+")
+            else:
+                sys.stdout.write(".")
+            sys.stdout.flush()
+
+        self.session.commit()
+
+    def sync_from_app_and_gpx(self, gpx_dir, app_tracks):
+        """
+        Sync from app and gpx at the same time.
+        """
+        loader = track_loader.TrackLoader()
+        gpx_tracks = loader.load_tracks(gpx_dir)
+        print(f"load {len(gpx_tracks)} tracks")
+        if not gpx_tracks:
+            print("No tracks found.")
+            return
+        for t in gpx_tracks:
+            t = t.to_namedtuple()
+            combined_tracks = app_tracks[str(t.id)]
+            combined_tracks['map'] = t.map
+            # combined_tracks['location_country'] = t.location_country
+            combined_tracks = namedtuple("x", combined_tracks.keys())(*combined_tracks.values())
+            created = update_or_create_activity(self.session, combined_tracks)
             if created:
                 sys.stdout.write("+")
             else:

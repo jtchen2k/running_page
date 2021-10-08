@@ -44,7 +44,7 @@ class Track:
             if os.path.getsize(file_name) == 0:
                 raise TrackLoadError("Empty GPX file")
             with open(file_name, "r") as file:
-                self._load_gpx_data(mod_gpxpy.parse(file))
+                self._load_gpx_data(mod_gpxpy.parse(file), file_name)
         except:
             print(
                 f"Something went wrong when loading GPX. for file {self.file_names[0]}, we just ignore this file and continue"
@@ -72,10 +72,12 @@ class Track:
                 bbox = bbox.union(s2.LatLngRect.from_point(latlng.normalized()))
         return bbox
 
-    def _load_gpx_data(self, gpx):
+    def _load_gpx_data(self, gpx, file_name: str):
         self.start_time, self.end_time = gpx.get_time_bounds()
         # use timestamp as id
-        self.run_id = int(datetime.datetime.timestamp(self.start_time) * 1000)
+        # self.run_id = int(datetime.datetime.timestamp(self.start_time) * 1000)
+        # use pure filename as id
+        self.run_id = file_name.split('/')[-1].split('.')[0]
         self.start_time_local, self.end_time_local = parse_datetime_to_local(
             self.start_time, self.end_time, gpx
         )
@@ -83,9 +85,7 @@ class Track:
             raise TrackLoadError("Track has no start time.")
         if self.end_time is None:
             raise TrackLoadError("Track has no end time.")
-            
-        # Changed to 3d distance to match Nike Run Club.
-        self.length = gpx.length_3d()
+        self.length = gpx.length_2d()
         if self.length == 0:
             raise TrackLoadError("Track is empty.")
         # Disabled simplify for higher accuracy.

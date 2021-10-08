@@ -4,7 +4,7 @@
     "app_id": "com.nike.sport.running.droid",
     "start_epoch_ms": 1633018259036,
     "end_epoch_ms": 1633019502577,
-    "last_modified": 1633019518802,
+    "last_modified": 1633280243347,
     "active_duration_ms": 1241000,
     "session": false,
     "delete_indicator": false,
@@ -68,11 +68,12 @@
         "com_nike_name": "Friday Night Run",
         "com_nike_running_goaltype": "basic",
         "com_nike_running_recordingappversion": "4.8.0",
-        "com_nike_temperature": "21.072222222222226",
-        "com_nike_weather": "clear_night",
+        "com_nike_temperature": "21.07",
+        "com_nike_weather": "clear-night",
         "location": "outdoors"
     },
     "change_tokens": [
+        "c5c5f1c410ac10b731f6d60664dccdec5935d9682e5181bbb6369ec1eae7a983:1633280243347",
         "7286daab2efa15bb7b7e8c1fea67c7742a8d37279a489f775d51e19cac079298:1633019518802",
         "18ef6215e6e8518e8cde49d5a8e3d1d7780f3d488d5eb08d4bb71d62bfdc8082:1633019504816"
     ],

@@ -5,6 +5,7 @@ import argparse
 import json
 import logging
 import os.path
+import os
 import time
 from collections import namedtuple
 from datetime import datetime, timedelta
@@ -25,7 +26,7 @@ from config import (
 )
 from generator import Generator
 
-from utils import adjust_time, make_activities_file
+from utils import adjust_time, make_activities_file_app_and_gpx, make_activities_file
 
 # logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("nike_sync")
@@ -33,6 +34,11 @@ logger = logging.getLogger("nike_sync")
 
 class Nike:
     def __init__(self, refresh_token):
+        # For debugging
+        # self.client = httpx.Client(proxies= {
+        #     "https://": None,
+        #     })
+
         self.client = httpx.Client()
 
         response = self.client.post(
@@ -269,7 +275,7 @@ def generate_gpx(title, latitude_data, longitude_data, elevation_data, heart_rat
     return gpx.to_xml()
 
 
-def parse_activity_data(activity):
+def parse_activity_gpx(activity):
     """
     Parses a NRC activity and returns GPX XML
     Args:
@@ -320,7 +326,6 @@ def save_gpx(gpx_data, activity_id):
     with open(file_path, "w") as f:
         f.write(gpx_data)
 
-
 def parse_no_gpx_data(activity):
     if not activity.get("metrics"):
         print(f"The activity {activity['id']} doesn't contain metrics information")
@@ -339,8 +344,8 @@ def parse_no_gpx_data(activity):
         return
     start_stamp = activity["start_epoch_ms"] / 1000
     end_stamp = activity["end_epoch_ms"] / 1000
-    moving_time = timedelta(seconds=int(end_stamp - start_stamp))
-    elapsed_time = timedelta(seconds=int(activity["active_duration_ms"] / 1000))
+    moving_time = timedelta(seconds=int(activity["active_duration_ms"] / 1000))
+    elapsed_time = timedelta(seconds=int(end_stamp - start_stamp))
 
     nike_id = activity["end_epoch_ms"]
     start_date = datetime.utcfromtimestamp(activity["start_epoch_ms"] / 1000)
@@ -349,7 +354,7 @@ def parse_no_gpx_data(activity):
     end_date_local = adjust_time(end_date, BASE_TIMEZONE)
     d = {
         "id": int(nike_id),
-        "name": "run from nike",
+        "name": "Run from Nike Run Club",
         "type": "Run",
         "start_date": datetime.strftime(start_date, "%Y-%m-%d %H:%M:%S"),
         "end": datetime.strftime(end_date, "%Y-%m-%d %H:%M:%S"),
@@ -365,7 +370,7 @@ def parse_no_gpx_data(activity):
         "average_speed": distance / int(activity["active_duration_ms"] / 1000),
         "location_country": "",
     }
-    return namedtuple("x", d.keys())(*d.values())
+    return d
 
 
 def make_new_gpxs(files):
@@ -385,15 +390,17 @@ def make_new_gpxs(files):
                 return
         # ALL save name using utc if you want local please offset
         activity_name = str(json_data["end_epoch_ms"])
-        parsed_data = parse_activity_data(json_data)
-        if parsed_data:
+        parsed_gpx = parse_activity_gpx(json_data)
+        if parsed_gpx:
+            print("YES")
             gpx_files.append(os.path.join(GPX_FOLDER, str(activity_name) + ".gpx"))
-            save_gpx(parsed_data, activity_name)
+            save_gpx(parsed_gpx, activity_name)
         else:
+            print("NO")
             try:
                 track = parse_no_gpx_data(json_data)
-                if track:
-                    tracks_list.append(track)
+                track = namedtuple("x", track.keys())(*track.values())
+                tracks_list.append(track)
             # just ignore some unexcept run
             except Exception as e:
                 print(str(e))
@@ -403,6 +410,29 @@ def make_new_gpxs(files):
         generator.sync_from_app(tracks_list)
     return gpx_files
 
+def make_app_tracks():
+    app_tracks = {}
+    files = [
+        OUTPUT_DIR + "/" + i
+        for i in os.listdir(OUTPUT_DIR)
+        if not i.startswith(".")
+    ]
+    for file in files:
+        with open(file, "r") as f:
+            try:
+                json_data = json.loads(f.read())
+            except:
+                return
+        activity_name = str(json_data["end_epoch_ms"])
+        try:
+            track = parse_no_gpx_data(json_data)
+            if track:
+                app_tracks[activity_name] = track
+        except Exception as e:
+            print(str(e))
+            continue
+    return app_tracks
+    
 
 if __name__ == "__main__":
     if not os.path.exists(OUTPUT_DIR):
@@ -415,6 +445,8 @@ if __name__ == "__main__":
     time.sleep(2)
     files = get_to_generate_files()
     make_new_gpxs(files)
+    app_tracks = make_app_tracks()
     # waiting for gpx
     time.sleep(2)
-    make_activities_file(SQL_FILE, GPX_FOLDER, JSON_FILE)
+    make_activities_file_app_and_gpx(SQL_FILE, GPX_FOLDER, JSON_FILE, app_tracks)
+    # make_activities_file(SQL_FILE, GPX_FOLDER, JSON_FILE)
