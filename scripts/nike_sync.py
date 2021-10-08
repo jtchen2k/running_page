@@ -35,13 +35,13 @@ logger = logging.getLogger("nike_sync")
 class Nike:
     def __init__(self, refresh_token):
         # For debugging
-        # self.client = httpx.Client(
-        #     proxies={
-        #         "https://": None,
-        #     }
-        # )
+        self.client = httpx.Client(
+            proxies={
+                "https://": None,
+            }
+        )
 
-        self.client = httpx.Client()
+        # self.client = httpx.Client()
 
         response = self.client.post(
             TOKEN_REFRESH_URL,
@@ -336,6 +336,11 @@ def parse_no_gpx_data(activity):
     average_heartrate = None
     summary_info = activity.get("summaries")
     distance = 0
+    name = "Run from NRC"
+    if activity.get("tags"):
+        tags = activity.get("tags")
+        if tags.get("com_nike_name"):
+            name = tags.get("com_nike_name")
 
     for s in summary_info:
         if s.get("metric") == "distance":
@@ -357,7 +362,7 @@ def parse_no_gpx_data(activity):
     end_date_local = adjust_time(end_date, BASE_TIMEZONE)
     d = {
         "id": int(nike_id),
-        "name": "Run from Nike Run Club",
+        "name": name,
         "type": "Run",
         "start_date": datetime.strftime(start_date, "%Y-%m-%d %H:%M:%S"),
         "end": datetime.strftime(end_date, "%Y-%m-%d %H:%M:%S"),
