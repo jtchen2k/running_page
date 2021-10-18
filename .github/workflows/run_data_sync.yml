@@ -23,7 +23,7 @@ env:
   ATHLETE: Bill Chen
   TITLE: Total Status
   MIN_GRID_DISTANCE: 0 # change min distance here
-  TITLE_GRID: All Runs # also here
+  TITLE_GRID: All Runs (with GPS) # also here
   GITHUB_NAME: github-actions[bot]
   GITHUB_EMAIL: github-actions[bot]@users.noreply.github.com
 
