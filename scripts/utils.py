@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
 import json
 from datetime import datetime
 
@@ -19,9 +16,9 @@ def adjust_time_to_utc(time, tz_name):
     return time - tc_offset
 
 
-def make_activities_file(sql_file, gpx_dir, json_file):
+def make_activities_file(sql_file, data_dir, json_file, file_suffix="gpx"):
     generator = Generator(sql_file)
-    generator.sync_from_gpx(gpx_dir)
+    generator.sync_from_data_dir(data_dir, file_suffix=file_suffix)
     activities_list = generator.load()
     with open(json_file, "w") as f:
         json.dump(activities_list, f)

@@ -70,7 +70,9 @@ English | [简体中文](https://github.com/yihong0618/running_page/blob/master/
 - **[Nike Run Club](#nike-run-club)**
 - **[Strava](#strava)**
 - **[GPX](#GPX)**
+- **[TCX](#TCX)**
 - **[Nike_to_Strava(Using NRC Run, Strava backup data)](#Nike_to_Strava)**
+- **[Tcx_to_Strava(upload all tcx data to strava)](#TCX_to_Strava)**
 - **[Strava_to_Garmin(Using Strava Run, Garmin backup data)](#)**
 
 ## Download
@@ -81,7 +83,7 @@ Clone or fork the repo.
 git clone https://github.com/yihong0618/running_page.git
 ```
 
-## Installation and testing
+## Installation and testing (node >= 12 and <= 14 python >= 3.7)
 
 ```
 pip3 install -r requirements.txt
@@ -143,12 +145,27 @@ python3(python) scripts/gpx_sync.py
 
 </details>
 
+### TCX
+
+<details>
+<summary>Make your <code>TCX</code> data</summary>
+<br>
+
+Copy all your tcx files to TCX_OUT or new tcx files
+
+```python
+python3(python) scripts/tcx_sync.py
+```
+
+</details>
+
 ### Garmin
 
 <details>
 <summary>Get your <code>Garmin</code> data</summary>
 <br>
 If you only want to sync `type running` add args --only-run
+If you only want `tcx` files add args --tcx
 
 ```python
 python3(python) scripts/garmin_sync.py ${your email} ${your password}
@@ -167,6 +184,8 @@ python3(python) scripts/garmin_sync.py example@gmail.com example
 <details>
 <summary>Get your <code>Garmin-CN</code> data</summary>
 <br>
+If you only want to sync `type running` add args --only-run
+If you only want `tcx` files add args --tcx
 
 ```python
 python3(python) scripts/garmin_sync.py ${your email} ${your password} --is-cn
@@ -288,10 +307,33 @@ curl -X POST https://www.strava.com/oauth/token \
 python3(python) scripts/strava_sync.py ${client_id} ${client_secret} ${refresch_token}
 ```
 
-References：  
-https://developers.strava.com/docs/getting-started  
-https://github.com/barrald/strava-uploader  
+References：
+https://developers.strava.com/docs/getting-started
+https://github.com/barrald/strava-uploader
 https://github.com/strava/go.strava
+
+</details>
+
+
+### TCX_to_Strava
+
+<details>
+<summary>upload all tcx files to strava</summary>
+
+<br>
+
+1. follow the strava steps
+2. Execute in the root directory:
+
+```python
+python3(python) scripts/tcx_to_strava_sync.py ${client_id} ${client_secret}  ${strava_refresch_token}
+```
+
+example：
+
+```python
+python3(python) scripts/tcx_to_strava_sync.py xxx xxx xxx
+```
 
 </details>
 
@@ -340,7 +382,7 @@ Generate year circular svg show
 python3(python) scripts/gen_svg.py --from-db --type circular --use-localtime
 ```
 
-For more display effects, see:  
+For more display effects, see:
 https://github.com/flopp/GpxTrackPoster
 
 </details>
