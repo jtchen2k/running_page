@@ -11,6 +11,10 @@ module.exports = {
         url: 'https://billc.io/about',
       },
       {
+        name: 'Strava',
+        url: 'https://www.strava.com/athletes/93342826',
+      },
+      {
         name: 'GitHub',
         url: 'https://github.com/billchen2k',
       },
