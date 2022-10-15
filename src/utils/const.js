@@ -36,6 +36,11 @@ const AFTERNOON_RUN_TITLE = IS_CHINESE ? '午后跑步' : 'Afternoon Run';
 const EVENING_RUN_TITLE = IS_CHINESE ? '傍晚跑步' : 'Evening Run';
 const NIGHT_RUN_TITLE = IS_CHINESE ? '夜晚跑步' : 'Night Run';
 
+// styling: set to `true` if you want dash-line route
+const USE_DASH_LINE = true;
+// styling: route line opacity: [0, 1]
+const LINE_OPACITY = 0.35;
+
 const RUN_TITLES = {
   FULL_MARATHON_RUN_TITLE,
   HALF_MARATHON_RUN_TITLE,
@@ -55,8 +60,10 @@ export {
   INFO_MESSAGE,
   RUN_TITLES,
   USE_ANIMATION_FOR_GRID,
+  USE_DASH_LINE,
+  LINE_OPACITY,
 };
 
-const nike = 'rgb(86, 150 ,170)'; // if you want change the main color change here src/styles/variables.scss
+const nike = 'rgb(130, 226, 255)'; // if you want change the main color change here src/styles/variables.scss
 export const MAIN_COLOR = nike;
 export const PROVINCE_FILL_COLOR = '#47b8e0';
