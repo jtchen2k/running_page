@@ -90,11 +90,7 @@ R.I.P. 希望大家都能健康顺利的跑过终点，逝者安息。
 git clone https://github.com/yihong0618/running_page.git
 ```
 
-<<<<<<< HEAD
-## 安装及测试
-=======
 ## 安装及测试 (node >= 12 and <= 14 python >= 3.7)
->>>>>>> 87ef2c8 (feat: support tcx)
 
 ```
 pip3 install -r requirements.txt
