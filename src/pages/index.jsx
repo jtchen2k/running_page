@@ -82,7 +82,7 @@ const Index = () => {
   useEffect(() => {
     setViewport({
       width: '100%',
-      height: 500,
+      height: 400,
       ...bounds,
     });
   }, [geoData]);
@@ -173,7 +173,7 @@ const Index = () => {
             <a href="/">{siteTitle}</a>
           </h1>
         </div>
-        {viewport.zoom <= 5 && IS_CHINESE ? (
+        {viewport.zoom <= 5 && !IS_CHINESE ? (
           <LocationStat
             changeYear={changeYear}
             changeCity={changeCity}

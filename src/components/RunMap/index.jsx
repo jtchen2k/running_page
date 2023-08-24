@@ -44,8 +44,8 @@ const RunMap = ({
   // for geojson format
   filterProvinces.unshift('in', 'name');
 
-  const isBigMap = viewport.zoom <= 3;
-  if (isBigMap && IS_CHINESE) {
+  const isBigMap = viewport.zoom <= 5;
+  if (isBigMap) {
     geoData = geoJsonForMap();
   }
 
@@ -62,15 +62,19 @@ const RunMap = ({
     [endLon, endLat] = points[points.length - 1];
   }
   let dash = USE_DASH_LINE && !isSingleRun ? [1, 2] : [2, 0];
-
   // </Map>
   return (
     <Map
       {...viewport}
+      height={500}
       mapStyle="mapbox://styles/mapbox/dark-v11"
-      height={600}
-      width={'100%'}
-      onViewportChange={setViewport}
+      onViewportChange={(e) => {
+        const newViewport = {...viewport};
+        newViewport.latitude = e.latitude;
+        newViewport.longitude = e.longitude;
+        newViewport.zoom = e.zoom;
+        setViewport(newViewport);
+      }}
       onLoad={addControlHandler}
       mapboxApiAccessToken={MAPBOX_TOKEN}
     >
@@ -79,6 +83,7 @@ const RunMap = ({
         thisYear={thisYear}
         mapButtonYear={mapButtonYear}
       />
+      <FullscreenControl className={styles.fullscreenButton} />
       <Source id="data" type="geojson" data={geoData}>
         <Layer
           id="prvince"
