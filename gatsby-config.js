@@ -61,7 +61,10 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-sass',
       options: {
-        precision: 8,
+        sassOptions: {
+          includePaths: ['./src'],
+          precision: 6,
+        }
       },
     },
     {

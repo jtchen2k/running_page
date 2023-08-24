@@ -5,7 +5,7 @@ import Header from 'src/components/Header';
 import useSiteMetadata from 'src/hooks/useSiteMetadata';
 import 'src/styles/index.scss';
 import Footer from 'src/components/Footer';
-import styles from './style.module.scss';
+import * as styles from './style.module.scss';
 
 const Layout = ({ children }) => {
   const { siteTitle, description } = useSiteMetadata();

@@ -1,5 +1,6 @@
 import * as mapboxPolyline from '@mapbox/polyline';
-import { WebMercatorViewport } from 'react-map-gl';
+// import { WebMercatorViewport } from 'react-map-gl';
+import WebMercatorViewport from 'viewport-mercator-project';
 import { chinaGeojson } from '../static/run_countries';
 import { MUNICIPALITY_CITIES_ARR, RUN_TITLES } from './const';
 
@@ -173,7 +174,7 @@ const getBoundsForGeoData = (geoData) => {
   }).fitBounds(cornersLongLat, { padding: 200 });
   let { longitude, latitude, zoom } = viewport;
   if (features.length > 1) {
-    zoom = 13;
+    zoom = 14;
   }
   return { longitude, latitude, zoom };
 };

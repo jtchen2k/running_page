@@ -1,6 +1,6 @@
-import MapboxLanguage from '@mapbox/mapbox-gl-language';
+// import MapboxLanguage from '@mapbox/mapbox-gl-language';
 import React from 'react';
-import ReactMapGL, { Layer, Source } from 'react-map-gl';
+import Map, { Layer, Source, FullscreenControl } from 'react-map-gl';
 import useActivities from 'src/hooks/useActivities';
 import {
   IS_CHINESE,
@@ -13,7 +13,7 @@ import {
 import { geoJsonForMap } from 'src/utils/utils';
 import RunMarker from './RunMaker';
 import RunMapButtons from './RunMapButtons';
-import styles from './style.module.scss';
+import * as styles from './style.module.scss';
 
 const RunMap = ({
   title,
@@ -28,17 +28,17 @@ const RunMap = ({
   const addControlHandler = (event) => {
     const map = event && event.target;
     // set lauguage to Chinese if you use English please comment it
-    if (map && IS_CHINESE) {
-      map.addControl(
-        new MapboxLanguage({
-          defaultLanguage: 'zh',
-        })
-      );
-      map.setLayoutProperty('country-label-lg', 'text-field', [
-        'get',
-        'name_zh',
-      ]);
-    }
+    // if (map && IS_CHINESE) {
+    //   map.addControl(
+    //     new MapboxLanguage({
+    //       defaultLanguage: 'zh',
+    //     })
+    //   );
+    //   map.setLayoutProperty('country-label-lg', 'text-field', [
+    //     'get',
+    //     'name_zh',
+    //   ]);
+    // }
   };
   const filterProvinces = provinces.slice();
   // for geojson format
@@ -63,10 +63,13 @@ const RunMap = ({
   }
   let dash = USE_DASH_LINE && !isSingleRun ? [1, 2] : [2, 0];
 
+  // </Map>
   return (
-    <ReactMapGL
+    <Map
       {...viewport}
-      mapStyle="mapbox://styles/mapbox/dark-v9"
+      mapStyle="mapbox://styles/mapbox/dark-v11"
+      height={600}
+      width={'100%'}
       onViewportChange={setViewport}
       onLoad={addControlHandler}
       mapboxApiAccessToken={MAPBOX_TOKEN}
@@ -109,7 +112,7 @@ const RunMap = ({
         />
       )}
       <span className={styles.runTitle}>{title}</span>
-    </ReactMapGL>
+    </Map>
   );
 };
 

@@ -21,7 +21,7 @@ import {
 } from 'src/utils/utils';
 import Footer from 'src/components/Footer';
 
-export default () => {
+const Index = () => {
   const { siteTitle } = useSiteMetadata();
   const { activities, thisYear } = useActivities();
   const [year, setYear] = useState(thisYear);
@@ -210,3 +210,5 @@ export default () => {
     </Layout>
   );
 };
+
+export default Index;
