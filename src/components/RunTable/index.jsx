@@ -66,7 +66,7 @@ const RunTable = ({
   };
 
   return (
-    <div className={styles.tableContainer}>
+    <div className={styles.tableContainer} className={'pr4-l pr3 pl0-l pl0'}>
       <table className={styles.runTable} cellSpacing="0" cellPadding="0">
         <thead>
           <tr>

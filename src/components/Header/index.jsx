@@ -8,8 +8,8 @@ const Header = () => {
   return (
     <div>
       <nav
-        className="db flex justify-between w-100 ph5-l"
-        style={{ marginTop: '3rem' }}
+        className="db flex justify-between w-100"
+        // style={{ marginTop: '3rem' }}
       >
         <div className="dib w-25 v-mid">
           <Link to={siteUrl} className="link dim">

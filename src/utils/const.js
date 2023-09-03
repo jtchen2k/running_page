@@ -18,7 +18,7 @@ const CHINESE_INFO_MESSAGE = (yearLength, year) => {
   return `我用 App 记录自己跑步 ${yearLength} 年了，下面列表展示的是 ${yearStr} 的数据`;
 };
 const ENGLISH_INFO_MESSAGE = (yearLength, year) =>
-  `I have been running with Apple Workout (Previously NRC) for ${yearLength} ${
+  `I have been running with NRC for ${yearLength} ${
     yearLength > 1 ? 'years' : 'year'
   }. The following table shows my running activities in ${year}.`;
 

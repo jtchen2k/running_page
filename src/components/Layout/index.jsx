@@ -22,8 +22,9 @@ const Layout = ({ children }) => {
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
       </Helmet>
-      <Header title={siteTitle} />
-      <div className="pa3 pa5-l">{children}</div>
+      {/* <Header title={siteTitle} /> */}
+      {/* <div className="pa3 pa5-l">{children}</div> */}
+      <div className="pa0">{children}</div>
     </div>
   );
 };

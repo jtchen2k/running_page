@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import Layout from 'src/components/Layout';
 import LocationStat from 'src/components/LocationStat';
 import RunMap from 'src/components/RunMap';
@@ -7,7 +7,7 @@ import SVGStat from 'src/components/SVGStat';
 import YearsStat from 'src/components/YearsStat';
 import useActivities from 'src/hooks/useActivities';
 import useSiteMetadata from 'src/hooks/useSiteMetadata';
-import { IS_CHINESE } from 'src/utils/const';
+import {IS_CHINESE} from 'src/utils/const';
 import {
   filterAndSortRuns,
   filterCityRuns,
@@ -20,10 +20,11 @@ import {
   titleForShow,
 } from 'src/utils/utils';
 import Footer from 'src/components/Footer';
+import Header from '../components/Header';
 
 const Index = () => {
-  const { siteTitle } = useSiteMetadata();
-  const { activities, thisYear } = useActivities();
+  const {siteTitle} = useSiteMetadata();
+  const {activities, thisYear} = useActivities();
   const [year, setYear] = useState(thisYear);
   const [runIndex, setRunIndex] = useState(-1);
   const [runs, setActivity] = useState(
@@ -167,21 +168,28 @@ const Index = () => {
 
   return (
     <Layout>
-      <div className="mb5">
-        <div className="w-100">
+      <div className="mb0">
+        {/* <div className="w-100">
           <h1 className="f1 fw9 i">
             <a href="/">{siteTitle}</a>
           </h1>
+        </div> */}
+        <div className="fl w-100 w-30-l pa4" style={{paddingTop: '1.3rem'}}>
+          <Header />
+          <h1 className="f1 fw9 i">
+            <a href="/">{siteTitle}</a>
+          </h1>
+          {viewport.zoom <= 5 && !IS_CHINESE ? (
+            <LocationStat
+              changeYear={changeYear}
+              changeCity={changeCity}
+              changeTitle={changeTitle}
+            />
+          ) : (
+            <YearsStat year={year} onClick={changeYear} />
+          )}
         </div>
-        {viewport.zoom <= 5 && !IS_CHINESE ? (
-          <LocationStat
-            changeYear={changeYear}
-            changeCity={changeCity}
-            changeTitle={changeTitle}
-          />
-        ) : (
-          <YearsStat year={year} onClick={changeYear} />
-        )}
+
         <div className="fl w-100 w-70-l">
           <RunMap
             runs={runs}

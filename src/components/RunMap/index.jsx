@@ -66,7 +66,8 @@ const RunMap = ({
   return (
     <Map
       {...viewport}
-      height={500}
+      // className='vh-50 vh-100-l'
+      height={'68vh'}
       mapStyle="mapbox://styles/mapbox/dark-v11"
       onViewportChange={(e) => {
         const newViewport = {...viewport};
