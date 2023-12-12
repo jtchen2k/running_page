@@ -8,7 +8,7 @@ module.exports = {
     navLinks: [
       {
         name: 'About',
-        url: 'https://billc.io/about',
+        url: 'https://billc.io/life',
       },
       {
         name: 'Strava',

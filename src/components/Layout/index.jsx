@@ -6,9 +6,13 @@ import useSiteMetadata from 'src/hooks/useSiteMetadata';
 import 'src/styles/index.scss';
 import Footer from 'src/components/Footer';
 import * as styles from './style.module.scss';
-
+import {inject} from '@vercel/analytics';
 const Layout = ({ children }) => {
   const { siteTitle, description } = useSiteMetadata();
+
+  React.useEffect(() => {
+    inject();
+  })
 
   return (
     <div>
@@ -21,6 +25,7 @@ const Layout = ({ children }) => {
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
+
       </Helmet>
       {/* <Header title={siteTitle} /> */}
       {/* <div className="pa3 pa5-l">{children}</div> */}
