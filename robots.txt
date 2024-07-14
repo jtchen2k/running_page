@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://yihong.run/sitemap/sitemap-index.xml
-Host: https://yihong.run
+Sitemap: https://run.billc.io/sitemap-index.xml
+Host: https://run.billc.io
