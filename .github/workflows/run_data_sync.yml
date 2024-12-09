@@ -20,7 +20,7 @@ on:
 env:
   # please change to your own config.
   RUN_TYPE: strava # support strava/nike/garmin/garmin_cn/keep/only_gpx/nike_to_strava/strava_to_garmin/strava_to_garmin_cn, Please change the 'pass' it to your own
-  ATHLETE: Bill Chen
+  ATHLETE: Juntong
   TITLE: Total Status
   MIN_GRID_DISTANCE: 0 # change min distance here
   TITLE_GRID: All Runs (with GPS) # also here

@@ -1,14 +1,14 @@
 module.exports = {
   pathPrefix: `/`, // Change to `/running_page` when running on github pages
   siteMetadata: {
-    siteTitle: "Bill Chen's Running Page",
-    siteUrl: 'https://run.billc.io',
+    siteTitle: "Juntong's Running Page",
+    siteUrl: 'https://run.jtchen.io',
     logo: 'https://billc.oss-cn-shanghai.aliyuncs.com/img/2021-10-01-6ogioj.jpg',
     description: "Don't stop running.",
     navLinks: [
       {
         name: 'About',
-        url: 'https://billc.io/life',
+        url: 'https://jtchen.io/life',
       },
       {
         name: 'Strava',
@@ -16,7 +16,7 @@ module.exports = {
       },
       {
         name: 'GitHub',
-        url: 'https://github.com/billchen2k',
+        url: 'https://github.com/jtchen2k',
       },
     ],
   },
