@@ -33,11 +33,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Set up Python
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v5
         with:
-          python-version: 3.7
+          python-version: '3.12'
 
       # from pdm
       - name: Set Variables
@@ -47,7 +47,7 @@ jobs:
           echo "::set-output name=PIP_CACHE::$(pip cache dir)"
 
       - name: Cache PIP
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ${{ steps.set_variables.outputs.PIP_CACHE }}
           key: Ubuntu-pip-${{ steps.set_variables.outputs.PY }}
